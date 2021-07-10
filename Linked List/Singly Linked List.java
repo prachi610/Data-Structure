@@ -115,6 +115,9 @@ public class SinglyLinkedList {
 	
 /*********************Delete the first element of the List***********************/
 	public void deleteFirst() {
+		if(head == null) {
+			return;
+		}
 		Node temp = head;
 		head = temp.next;
 	}
@@ -123,6 +126,15 @@ public class SinglyLinkedList {
 /*********************Delete the last element of the List***********************/
 	public void deleteLast() {
 		Node temp = head;
+		if(head == null) {
+			System.out.println("List was already empty.");
+			return;
+		}
+		if(head.next == null) {
+			head = null;
+			System.out.println("List becomes empty.");
+			return;
+		}
 		while(temp.next.next != null) {
 			temp = temp.next;
 		}

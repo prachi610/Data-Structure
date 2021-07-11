@@ -16,13 +16,13 @@ public class DoublyLinkedList {
 	Node head;
 	public static void main(String[] args) {
 		DoublyLinkedList dll = new DoublyLinkedList();
-		dll.creatDLL(5);
+//		dll.creatDLL(5);
 //		dll.print();
-//		dll.insertAtEnd(7);
-//		dll.print();
+		dll.insertAtEnd(7);
+		dll.print();
 //		dll.insertAtFirst(5);
 //		dll.print();
-//		dll.insertAtKthPosition(3 , 10);
+//		dll.insertAtKthPosition(7 , 10);
 //		dll.print();
 //		dll.deleteAtFirst();
 //		dll.print();
@@ -35,6 +35,10 @@ public class DoublyLinkedList {
 	
 	public void deleteAtKthPosition(int k) {
 		Node temp = head;
+		if(k < 1) {
+			System.out.println("Underflow");
+			return;
+		}
 		if(k == 1) {
 			deleteAtFirst();
 			return;
@@ -84,10 +88,23 @@ public class DoublyLinkedList {
 
 
 	public void insertAtKthPosition(int k, int a) {
+		
 		Node temp = head;
 		Node newnode = new Node(a);
-		for(int i = 1 ; i < k-1 ; i++) {
+		if(k < 1) {
+			System.out.println("Invalid input!");
+			return;
+		}
+		if(k == 1) {
+			insertAtFirst(a);
+			return;
+		}
+		for(int i = 1 ; i < k-1 && temp != null ; i++) {
 			temp = temp.next;
+		}
+		if(temp == null) {
+			System.out.println("Invalid input!");
+			return;
 		}
 		Node store = temp.next;
 		temp.next = newnode;
@@ -106,10 +123,15 @@ public class DoublyLinkedList {
 
 	public void insertAtEnd(int a) {
 		Node temp = head;
+		Node newnode = new Node(a);
+		if(head == null) {
+			head = newnode;
+			return;
+		}
 		while(temp.next != null) {
 			temp = temp.next;
 		}
-		Node newnode = new Node(a);
+		
 		temp.next = newnode;
 		newnode.pre = temp;
 	}
@@ -117,9 +139,17 @@ public class DoublyLinkedList {
 
 	public void print() {
 		Node temp = head;
-		while(temp != null) {
-			System.out.println(temp.data);
+		System.out.print("Printing List:");
+		while(temp.next != null) {
+			System.out.print(temp.data + " ");
 			temp = temp.next;
+		}
+		System.out.println(temp.data);
+		System.out.println();
+		System.out.println("Printing List in reverse direction:");
+		while(temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.pre;
 		}
 	}
 
@@ -149,3 +179,4 @@ public class DoublyLinkedList {
 	}
 
 }
+

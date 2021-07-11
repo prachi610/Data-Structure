@@ -13,7 +13,7 @@ public class SinglyLinkedList {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		SinglyLinkedList ll = new SinglyLinkedList();
-//		ll.creatLLofSizeN(5);
+//		ll.creatLLofSizeN(1);
 //		ll.print();
 //		ll.insertAtEnd(4);
 //		ll.insertAtEnd(6);
@@ -55,6 +55,10 @@ public class SinglyLinkedList {
 	
 /***********************Print the List*************************/
 	public void print() {
+		if(head == null) {
+			System.out.println("List is empty.");
+			return;
+		}
 		Node temp = head;
 		while(temp != null) {
 			System.out.println(temp.data);
@@ -65,6 +69,11 @@ public class SinglyLinkedList {
 	
 /********************Add an element at the beginning of the LinkedList*********************/
 	public void insertAtFirst(int a) {
+		if(head == null) {
+			head = new Node(a);
+			head.next = null;
+			return;
+		}
 		Node temp = head;
 		head = new Node(a);
 		head.next = temp;
@@ -127,12 +136,10 @@ public class SinglyLinkedList {
 	public void deleteLast() {
 		Node temp = head;
 		if(head == null) {
-			System.out.println("List was already empty.");
 			return;
 		}
 		if(head.next == null) {
 			head = null;
-			System.out.println("List becomes empty.");
 			return;
 		}
 		while(temp.next.next != null) {
@@ -150,7 +157,7 @@ public class SinglyLinkedList {
 			deleteFirst();
 		}
 		else {
-			while(count+1 != k) {
+			while(count+1 < k) {
 				temp = temp.next;
 				count++;
 			}

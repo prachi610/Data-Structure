@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class CircularSinglyLinkedList {
 	
 	class Node{
@@ -170,6 +171,16 @@ public class CircularSinglyLinkedList {
 /*********************Delete the element present at Kth position***********************/
 	public void deleteAtKthPosition(int k) {
 		int count=1;
+		Node v = head;
+		int length = 0;
+		do {
+			length++;
+			v = v.next;
+		}while(v != head);
+		
+		if(k > length) {
+			System.out.println("Position should be less than or equal to length of list.");
+		}
 		Node temp = head;
 		if(k < 1) {
 			System.out.println("Underflow");
@@ -193,6 +204,17 @@ public class CircularSinglyLinkedList {
 /*********************Find an element at Kth position***********************/
 	public int findKthElement(int k) {
 		Node temp = head;
+		Node v = head;
+		int length = 0;
+		do {
+			length++;
+			v = v.next;
+		}while(v != head);
+		
+		if(k > length) {
+			System.out.println("Position should be less than or equal to length of list.");
+			return -1;
+		}
 		int count = 1;
 		while(count != k) {
 			temp = temp.next;

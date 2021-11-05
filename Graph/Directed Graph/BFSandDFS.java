@@ -5,11 +5,11 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class DirectedGraph {
+public class BFSandDFS {
 
 	private LinkedList<Integer> A[];
 	
-	public DirectedGraph(int v){
+	public BFSandDFS(int v){
 		A = new LinkedList[v];
 		for(int i = 0 ; i < v ; i++) {
 			A[i] = new LinkedList<Integer>();
@@ -81,7 +81,7 @@ public class DirectedGraph {
 		Scanner sc = new Scanner(System.in);
 		int v = sc.nextInt();
 		int e = sc.nextInt();
-		DirectedGraph graph = new DirectedGraph(v);
+		BFSandDFS graph = new BFSandDFS(v);
 		for(int i = 0 ; i < e ; i++) {
 			int source = sc.nextInt();
 			int destination = sc.nextInt();

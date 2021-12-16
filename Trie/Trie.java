@@ -50,33 +50,44 @@ public class Trie {
 		return false;
 	}
 	
-//	public ArrayList<String> startWith(String s){
-//		Node temp = head;
-//		int n = s.length();
-//		for(int i = 0 ; i < n ; i++) {
-//			char ch = s.charAt(i);
-//			if(temp.children[ch-'a'] == null) {
-//				return new ArrayList<String>();
-//			}
-//			temp = temp.children[ch-'a'];
-//		}
-//		ArrayList<String> A = new ArrayList<>();
-//		if(temp != null && temp.isWord == true) {
-//			A.add(s);
-//		}
-//		
-//		for(int i = 0 ; i < 26 ; i++) {
-//			Node curr = temp;
-//			StringBuilder ans = new StringBuilder(s);
-//			if(curr.children[i] != null) {
-//				do {
-//					
-//				} while (curr.isWord == false);
-//			}
-//		}
-//		
-//	}
-  
+public ArrayList<String> startWith(String s){
+		Node temp = head;
+		int n = s.length();
+		for(int i = 0 ; i < n ; i++) {
+			char ch = s.charAt(i);
+			if(temp.children[ch-'a'] == null) {
+				return new ArrayList<String>();
+			}
+			temp = temp.children[ch-'a'];
+		}
+		ArrayList<String> a = new ArrayList<>();
+		String si = "";
+		fun(temp,si,a, s);
+		
+		return a;
+		
+		
+	}
+	private void fun(Node temp, String s, ArrayList<String> a, String ad) {
+		if(temp == null) {
+			s = "";
+			return;
+		}
+		
+		if(temp != null && temp.isWord == true) {
+			a.add(ad+s);
+			s = "";
+		}
+		
+		for(int i = 0 ; i < 26 ; i++) {
+			if(temp.children[i] != null) {
+				s = s+temp.children[i].c;
+				fun(temp.children[i],s,a, ad);
+			}
+			
+		}
+		
+	}
   
 	public static void main(String[] args) {
 		
@@ -91,6 +102,20 @@ public class Trie {
 			t.insert(A[i]);
 		}	
 		System.out.println(t.isPresent("hell"));
+		ArrayList<String> aa = t.startWith("hell");
+		System.out.println(aa);
+		
+		//              INPUT
+		
+		//              hell
+		//		hello
+		//		helloworld
+		//		hellome
+		//		hi
+		
+		//		OUTPUT
+		//  		true
+		//		[hell, hello, hellme, hellmworld]
 	}
 
 }

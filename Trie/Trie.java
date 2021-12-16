@@ -76,13 +76,11 @@ public class Trie {
 		
 		if(temp != null && temp.isWord == true) {
 			a.add(ad+s);
-			s = "";
 		}
 		
 		for(int i = 0 ; i < 26 ; i++) {
 			if(temp.children[i] != null) {
-				s = s+temp.children[i].c;
-				fun(temp.children[i],s,a, ad);
+				fun(temp.children[i],s+temp.children[i].c,a, ad);
 			}
 		}
 	}
@@ -113,7 +111,7 @@ public class Trie {
 		
 		//		OUTPUT
 		//  		true
-		//		[hell, hello, hellme, hellmworld]
+		//		[hell, hello, hellome, helloworld]
 	}
 
 }

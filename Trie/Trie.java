@@ -50,7 +50,9 @@ public class Trie {
 		return false;
 	}
 	
-public ArrayList<String> startWith(String s){
+	
+	/******************** Get all strings which starts with string s *******************/
+	public ArrayList<String> startWith(String s){
 		Node temp = head;
 		int n = s.length();
 		for(int i = 0 ; i < n ; i++) {
@@ -63,11 +65,9 @@ public ArrayList<String> startWith(String s){
 		ArrayList<String> a = new ArrayList<>();
 		String si = "";
 		fun(temp,si,a, s);
-		
 		return a;
-		
-		
 	}
+	
 	private void fun(Node temp, String s, ArrayList<String> a, String ad) {
 		if(temp == null) {
 			s = "";
@@ -84,9 +84,7 @@ public ArrayList<String> startWith(String s){
 				s = s+temp.children[i].c;
 				fun(temp.children[i],s,a, ad);
 			}
-			
 		}
-		
 	}
   
 	public static void main(String[] args) {
